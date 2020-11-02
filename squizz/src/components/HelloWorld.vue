@@ -106,7 +106,7 @@
           href: 'https://github.com/vuetifyjs/vuetify',
         },
         {
-          text: 'awesome-vuetify',
+          text: 'awesome vuetify',
           href: 'https://github.com/vuetifyjs/awesome-vuetify',
         },
       ],
