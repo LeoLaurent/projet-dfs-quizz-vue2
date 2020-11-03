@@ -67,6 +67,13 @@ const RootQuery = new GraphQLObjectType({
                 return Quizz.findById(args.id)
             }
         },
+        question: {
+            type: QuestionType,
+            args: {id: {type: GraphQLID}},
+            resolve(parent, args){
+                return Question.findById(args.id)
+            }
+        },
         quizzes: {
             type: new GraphQLList(QuizzType),
             resolve(parents, args){

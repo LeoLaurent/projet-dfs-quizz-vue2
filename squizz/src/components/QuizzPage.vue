@@ -1,10 +1,13 @@
 <template>
-    
+
 </template>
 
 <script>
     export default {
-        name: "QuizzPage"
+        name: "QuizzPage",
+        data: () => ({
+
+        })
     }
 </script>
 
