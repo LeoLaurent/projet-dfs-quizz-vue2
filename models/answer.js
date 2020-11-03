@@ -1,6 +1,7 @@
 const Mongoose = require('mongoose');
 
 const AnswerSchema = Mongoose.Schema({
+    questionId: String,
     text: String,
     correct: Boolean
 });
