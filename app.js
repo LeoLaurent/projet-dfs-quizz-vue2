@@ -15,6 +15,9 @@ mongoose.connection.once('open', () => {
     console.log('conneted to database');
 });
 
+api = require('./routes');
+app.use('/api', api);
+
 // bind express with graphql
 app.use('/graphql', graphqlHTTP({
     schema,
