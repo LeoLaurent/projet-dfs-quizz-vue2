@@ -21,6 +21,7 @@
 
     <v-main>
       <HelloWorld/>
+      <QuizzPage/>
     </v-main>
   </v-app>
 </template>
