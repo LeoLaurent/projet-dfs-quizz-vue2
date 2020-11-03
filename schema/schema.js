@@ -13,13 +13,13 @@ const QuizzType = new GraphQLObjectType({
         questions: {
             type: new GraphQLList(QuestionType),
             resolve(parent, args){
-                return Question.findById(parent.questions.id);
+                return Question.find({quizzId: parent.id});
             }
         },
         scores: {
             type: new GraphQLList(ScoreType),
             resolve(parent, args) {
-                return ScoreType.findById(parent.scores.id);
+                return Score.findById({quizzId: parent.id});
             }
         }
     })
@@ -32,8 +32,8 @@ const QuestionType = new GraphQLObjectType({
         title: { type: GraphQLString },
         answers: {
             type: new GraphQLList(AnswerType),
-            resolve(parent, args){
-                return AnswerType.findById(parent.answers.id);
+            resolve(parent, args) {
+                return Answer.findById({questionId: parent.id});
             }
         }
     })
@@ -79,9 +79,6 @@ const RootQuery = new GraphQLObjectType({
 const Mutations = new GraphQLObjectType({
     name: 'Mutation',
     fields: {
-        addQuestion: {
-
-        },
         addQuizz: {
             type: QuizzType,
             args: {
@@ -90,14 +87,81 @@ const Mutations = new GraphQLObjectType({
                 description: {type: GraphQLString}
             },
             resolve(parent, args) {
-                let book = new Book({
-                    name: args.name,
-                    genre: args.genre,
-                    authorId: args.authorId
+                let quizz = new Quizz({
+                    title: args.title,
+                    password: bcrypt(args.password),
+                    description: args.description
                 });
-                return book.save();
+                return quizz.save();
             }
+        },
+        addQuestion: {
+            type: QuestionType,
+            args: {
+                title: {type: GraphQLNonNull(GraphQLString)},
+                quizzId: {type: GraphQLNonNull(GraphQLID)}
+            },
+            resolve(parent, args) {
+                let question = new Question({
+                    title: args.title,
+                    quizzId: args.quizzId
+                });
+                return question.save();
+            }
+        },
+        addScore: {
+            type: ScoreType,
+            args: {
+                username: {type: GraphQLNonNull(GraphQLString)},
+                score: {type: GraphQLNonNull(GraphQLInt)},
+                quizzId: {type: GraphQLNonNull(GraphQLID)}
+            },
+            resolve(parent, args) {
+                let score = new Score({
+                    username: args.title,
+                    score: args.score,
+                    quizzId: args.quizzId
+                });
+                return quizz.save();
+            }
+        },
+        addAnswer: {
+            type: AnswerType,
+            args: {
+                text: {type: GraphQLNonNull(GraphQLString)},
+                correct: {type: GraphQLNonNull(GraphQLBoolean)},
+                questionId: {type: GraphQLNonNull(GraphQLID)}
+            },
+            resolve(parent, args) {
+                let answer = new Answer({
+                    text: args.text,
+                    correct: args.correct,
+                    questionId: args.questionId
+                });
+                return answer.save();
+            }
+        },
+        updateQuizz: {
+            type: QuizzType,
+            args: {
+                id: {type: GraphQLNonNull(GraphQLID)},
+                title: {type: GraphQLNonNull(GraphQLString)},
+                password: { type: GraphQLNonNull(GraphQLString) },
+                description: {type: GraphQLString}
+            },
+            resolve(parent, args) {
+                let quizz = RootQuery.quizz(args.id);
+                quizz.title = args.title;
+                quizz.password = bcrypt(args.password);
+                quizz.description = args.description;
+                quizz.save()
+            }
+        },
+        deleteQuestion: {
+            //flemme
         }
+
+
     }
 });
 
