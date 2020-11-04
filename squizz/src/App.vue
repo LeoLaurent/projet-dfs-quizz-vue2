@@ -18,7 +18,7 @@
       </div>
 
       <v-spacer></v-spacer>
-      <v-btn color="pink darken-1">
+      <v-btn color="pink darken-1" @click="$router.push('/quizz/create')">
         Créer un Squizz
       </v-btn>
 
