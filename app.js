@@ -4,9 +4,12 @@ const schema = require('./schema/schema');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+var bodyParser = require('body-parser')
+
 
 // allow cross-origin requests
 app.use(cors());
+app.use( bodyParser.json() );
 
 mongoose.connect("mongodb+srv://squizz:root@cluster.zb4we.mongodb.net/squizz?retryWrites=true&w=majority");
 mongoose.connection.once('open', () => {

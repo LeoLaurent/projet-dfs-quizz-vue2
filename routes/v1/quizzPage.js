@@ -1,26 +1,39 @@
 const express = require('express');
 const router = express.Router();
+const Quizz = require('../../models/quizz');
+const Question = require('../../models/question');
+const Answer = require('../../models/answer');
 
 const schema  = require('../../schema/schema');
-console.log(schema);
 
-router.get('/quizz/:idQuizz/questions', (req, res)=> {
+router.post('/quizz/:idQuizz/answers', (req, res)=> {
+    let score = 0, q, i;
+    console.log('answers');
+    Quizz.findById(req.params.idQuizz, (e, quizz) => {
+        Question.find({quizzId: quizz.id}, (e2, questions) => {
+            const ids_questions = [];
+            for(q of questions) ids_questions.push(q.id);
+            Answer.find({questionId: { "$in": ids_questions }}, (e3, answers) => {
+                const ids_answers = [];
+                for(a of answers){
+                    if(a.correct)
+                        ids_answers.push(a.id);
+                }
 
-    //let quizz = schema.RootQuery.quizz({id: req.params.idQuizz});
-    console.log('recoucou');
-    l = [];
-    let question;
-    for (question in quizz.questions){
-        l.push(question.id)
-    }
-    res.json({
-        quizz: quizz.title
-    })
+                console.log(req.body);
+                for (let qid in req.body.answers){
+                    if(ids_answers.indexOf(req.body.answers[qid]) !== -1) score += 1;
+                }
+                score = score * 100 / questions.length;
+
+                res.json({
+                    score
+                })
+            });
+
+        });
+    });
 });
-router.get('/', (req,res) => {
-    console.log('coucou');
-    res.json({title: 'coucou'})
-})
 
 
 module.exports = router;
