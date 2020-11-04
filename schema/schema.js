@@ -37,7 +37,7 @@ const QuestionType = new GraphQLObjectType({
         answers: {
             type: new GraphQLList(AnswerType),
             resolve(parent, args) {
-                return Answer.findById({questionId: parent.id});
+                return Answer.find({questionId: parent.id});
             }
         }
     })
@@ -76,6 +76,20 @@ const RootQuery = new GraphQLObjectType({
             args: {id: {type: GraphQLID}},
             resolve(parent, args){
                 return Question.findById(args.id)
+            }
+        },
+        questions: {
+            type: QuestionType,
+            args: {quizzId: {type: GraphQLID}},
+            resolve(parent, args){
+                return Question.find({quizzId: args.quizzId})
+            }
+        },
+        answers: {
+            type: AnswerType,
+            args: {questionId: {type: GraphQLID}},
+            resolve(parent, args){
+                return Answer.find({questionId: args.questionId})
             }
         },
         quizzes: {

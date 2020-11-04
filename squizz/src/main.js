@@ -22,9 +22,10 @@ const apolloProvider = new VueApollo({
     defaultClient: apolloClient,
 });
 
+Vue.use(VueApollo);
+
 new Vue({
   vuetify,
-  VueApollo,
   apolloProvider,
   render: h => h(App)
 }).$mount('#app');
