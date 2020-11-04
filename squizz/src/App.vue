@@ -1,18 +1,18 @@
 <template>
   <v-app>
     <v-app-bar
-      app
-      color="pink lighten-3"
-      dark
+            app
+            color="pink lighten-3"
+            dark
     >
       <div class="d-flex align-center">
         <v-img
-          alt="Cute Squid"
-          class="shrink mr-2"
-          contain
-          src="https://img.freepik.com/free-vector/squid-cartoon_119631-95.jpg?size=338&ext=jpg"
-          transition="scale-transition"
-          width="40"
+                alt="Cute Squid"
+                class="shrink mr-2"
+                contain
+                src="https://img.freepik.com/free-vector/squid-cartoon_119631-95.jpg?size=338&ext=jpg"
+                transition="scale-transition"
+                width="40"
         />
 
       </div>
@@ -25,25 +25,23 @@
     </v-app-bar>
 
     <v-main>
-      <add-squizz/>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-//import Test from "@/components/Test";
-//import QuizzPage from "@/components/QuizzPage";
-import addSquizz from "@/components/addSquizz";
-export default {
-  name: 'App',
+    //import Leaderboard from "@/components/Leaderboard";
+    //import QuizzPage from "./components/QuizzPage";
+    //import ListeQuizz from "./components/ListeQuizz";
 
-  components: {
-    // eslint-disable-next-line vue/no-unused-components
-     addSquizz,
-  },
 
-  data: () => ({
-    //
-  }),
-};
+    export default {
+        name: 'App',
+
+        /*components: {
+            QuizzPage, ListeQuizz
+            //Leaderboard
+        }*/
+    }
 </script>
