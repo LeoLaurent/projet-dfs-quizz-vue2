@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
 import VueApollo from 'vue-apollo'
@@ -6,6 +7,33 @@ import VueRouter from 'vue-router'
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+
+Vue.use(Vuex);
+
+const store = new Vuex.Store({
+    state: {
+        username: '',
+        score: '',
+        sent: false
+    },
+    mutations: {
+        newUser (state, username) {
+            state.username = username
+        },
+        delUser (state){
+            state.username = '';
+            state.sent = false;
+        },
+        send (state){
+            state.sent = true;
+        }
+
+    },
+    getters: {
+        username: state => state.username,
+        sent: state => state.sent
+    }
+});
 
 Vue.use(VueRouter);
 
@@ -43,5 +71,6 @@ new Vue({
     vuetify,
     apolloProvider,
     router,
+    store,
     render: h => h(App)
 }).$mount('#app');
