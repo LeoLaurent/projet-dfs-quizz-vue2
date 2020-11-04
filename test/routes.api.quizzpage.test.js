@@ -15,13 +15,13 @@ afterAll(async () => {
 });
 
 
-test('GET /api/current/quizz/1/questions', (done) => {
+test('GET /api/current/quizz/5fa1b5af247894f77e7e925a/questions', (done) => {
     user
-        .get('/api/current/contact/loutre/1')
+        .get('/api/current/quizz/5fa1b5af247894f77e7e925a/questions')
         .expect(200)
         .expect(function(res) {
             expect(res.body).toMatchObject({
-                //mettres les id
+                quizz: "Quizz 1"
             })
         })
         .end((err, res) => {
@@ -31,5 +31,3 @@ test('GET /api/current/quizz/1/questions', (done) => {
             done()
         })
 });
-
-test('GET')

@@ -1,4 +1,8 @@
 const graphql = require('graphql');
+const Quizz = require('../models/quizz');
+const Question = require('../models/question');
+const Answer = require('../models/answer');
+const Score = require('../models/score');
 const bcrypt = require('bcrypt');
 
 const { GraphQLObjectType, GraphQLSchema, GraphQLNonNull, GraphQLString, GraphQLList, GraphQLBoolean, GraphQLInt, GraphQLID } = graphql;
@@ -96,7 +100,7 @@ const Mutations = new GraphQLObjectType({
             resolve(parent, args) {
                 let quizz = new Quizz({
                     title: args.title,
-                    password: bcrypt(args.password),
+                    password: args.password,
                     description: args.description
                 });
                 return quizz.save();
@@ -164,9 +168,9 @@ const Mutations = new GraphQLObjectType({
                 quizz.save()
             }
         },
-        deleteQuestion: {
+        /*deleteQuestion: {
             //flemme
-        }
+        }*/
 
 
     }

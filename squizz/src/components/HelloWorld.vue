@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
@@ -95,7 +95,7 @@
   export default {
     name: 'HelloWorld',
 
-    data: () => ({
+    data: () => (
       ecosystem: [
         {
           text: 'vuetify-loader',
@@ -148,4 +148,4 @@
       ],
     }),
   }
-</script>
+</script>-->

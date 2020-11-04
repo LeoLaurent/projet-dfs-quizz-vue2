@@ -20,25 +20,27 @@
     </v-app-bar>
 
     <v-main>
-      <HelloWorld/>
-      <QuizzPage/>
+      <QuizzPage idQuizz="5fa1ef16635171317b40559c"/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+//import HelloWorld from './components/HelloWorld';
 import QuizzPage from './components/QuizzPage';
+
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld, QuizzPage
+      QuizzPage
   },
 
   data: () => ({
     //
   }),
+
+
 };
 </script>
