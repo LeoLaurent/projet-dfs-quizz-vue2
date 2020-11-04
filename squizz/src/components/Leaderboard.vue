@@ -103,7 +103,7 @@
           // },
 
           changed: function(event) {
-            this.$store.commit('newUser', event.target.value)
+            this.$store.commit('newUser', event)
           }
           // startQuizz () {
           //   this.$router.push(`/quizz/${quizz.id}/questions`)
@@ -115,6 +115,7 @@
                 query () {
                     return gql`query {
                       quizz(id: "${this.$route.params.idQuizz}") {
+                        id,
                         title,
                         description,
 
