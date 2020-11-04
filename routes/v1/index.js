@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-module.exports = router;
-
+router.use('/', require('./quizzPage'));
 router.use('/', require('./createQuizz'));
 router.use('/', require('./leaderboard'));
-router.use('/', require('./createQuizz'));
+
+
+module.exports = router;
