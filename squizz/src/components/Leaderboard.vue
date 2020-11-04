@@ -1,25 +1,26 @@
 <template>
-  <v-simple-table height="300px">
-      <thead>
-        <tr>
-          <th class="text-left">
-            Pseudo
-          </th>
-          <th class="text-left">
-            Score
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="entry in scores"
-          :key="entry.username"
-        >
-          <td>salut</td>
-          <td>69</td>
-        </tr>
-      </tbody>
-  </v-simple-table>
+    <v-container>
+        <h2 class="pink--text text--darken-2">{{ quizz.title }}</h2>
+        <p class="text-justify">
+            {{quizz.description}}
+        </p>
+        <v-card>
+            <v-card-title>
+                <v-text-field
+                        v-model="search"
+                        append-icon="mdi-magnify"
+                        label="Search"
+                        single-line
+                        hide-details
+                ></v-text-field>
+            </v-card-title>
+            <v-data-table
+                    :headers="headers"
+                    :items="quizz.scores"
+                    :search="search"
+            ></v-data-table>
+        </v-card>
+    </v-container>
 </template>
 
 <script>
@@ -28,33 +29,43 @@
         name: "Leaderboard.vue",
 
         beforeMount() {
-            console.log(this.$apollo);
-            this.$apollo.queries.scores.refetch();
+            this.$apollo.queries.quizz.refetch();
         },
 
         data () {
           return {
+              headers: [
+                  {
+                      text: 'Pseudo',
+                      align: 'start',
+                      filterable: true,
+                      value: 'username',
+                  },
+                  {
+                      text: 'Score',
+                      align: 'start',
+                      filterable: true,
+                      value: 'score'
+                  }
+              ],
             search: '',
-            headers: [
-              {
-                text: 'Pseudo',
-                align: 'start',
-                filterable: true,
-                value: 'pseudo',
-              },
-              { text: 'Score', value: 'score' },
-            ],
-            scores: {},
+            quizz: {}
           }
         },
 
         apollo: {
-            scores: {
-                query() {
+            quizz: {
+                query () {
                     return gql`query {
-                      scores {
-                        username
-                        score
+                      quizz(id: "${this.$route.params.idQuizz}") {
+                        title,
+                        description,
+
+                        scores {
+                            id
+                            score
+                            username
+                        }
                       }
                     }`
                 }
