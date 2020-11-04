@@ -13,8 +13,9 @@ const router = new VueRouter({
     mode: 'history',
     routes: [
         { path: '/', component: require('./components/ListeQuizz').default },
-        { path: '/quizz/:idQuizz', name: 'leaderboard', component: require('./components/Leaderboard').default },
-        { path: '/quizz/:idQuizz/questions', name: 'questions', component: require('./components/QuizzPage').default },
+        { path: '/quizz/create', component: require('./components/addSquizz').default },
+        { path: '/quizz/:idQuizz', component: require('./components/Leaderboard').default },
+        { path: '/quizz/:idQuizz/questions', component: require('./components/QuizzPage').default },
         { path: '*', redirect: '/' }
     ]
 });
