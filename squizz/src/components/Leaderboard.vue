@@ -30,7 +30,7 @@
                     :disabled="!valid"
                     color="success"
                     class="mr-4"
-                    @click="validate"
+                    @click="validate, this.$router.push(`/quizz/${quizz.id}/questions`)"
                   >
                     Commencer le test
                   </v-btn>
@@ -100,6 +100,13 @@
           validate () {
             this.$refs.form.validate()
           },
+
+          // changed: function(event) {
+          //   this.$store.commit('newUser', event.target.value)
+          // }
+          // startQuizz () {
+          //   this.$router.push(`/quizz/${quizz.id}/questions`)
+          // }
         },
 
         apollo: {
