@@ -6,6 +6,7 @@
         <v-text-field
             v-model="questionTitle"
             label="Question"
+            :rules="contenuRules"
             required
         ></v-text-field>
       </v-col>
@@ -24,6 +25,7 @@
             label="Bonne Réponse"
             required
             outlined
+            :rules="contenuRules"
             color="green lighten-2"
         ></v-text-field>
       </v-col>
@@ -33,6 +35,7 @@
             label="Mauvaise Réponse"
             required
             outlined
+            :rules="contenuRules"
             color="red lighten-2"
         ></v-text-field>
       </v-col>
@@ -42,6 +45,7 @@
             label="Mauvaise Réponse"
             required
             outlined
+            :rules="contenuRules"
             color="red lighten-2"
         ></v-text-field>
       </v-col>
@@ -51,6 +55,7 @@
             label="Mauvaise Réponse"
             required
             outlined
+            :rules="contenuRules"
             color="red lighten-2"
         ></v-text-field>
       </v-col>
@@ -65,7 +70,10 @@ export default {
   props:['id'],
   data: ()=>({
         questionTitle: "",
-        reponses: {reponseA: "", reponseB:"", reponseC:"",reponseD:""}
+        reponses: {reponseA: "", reponseB:"", reponseC:"",reponseD:""},
+        contenuRules:[
+          v => !!v || 'Obligatoire'
+        ]
       }
   ),
   watch: {
