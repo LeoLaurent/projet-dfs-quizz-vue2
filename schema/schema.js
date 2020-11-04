@@ -23,7 +23,7 @@ const QuizzType = new GraphQLObjectType({
         scores: {
             type: new GraphQLList(ScoreType),
             resolve(parent, args) {
-                return Score.findById({quizzId: parent.id});
+                return Score.find({quizzId: parent.id});
             }
         }
     })
