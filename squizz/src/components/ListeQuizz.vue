@@ -5,7 +5,7 @@
             <v-subheader></v-subheader>
             <v-list-item-group color="primary">
                 <v-list-item v-for="quizz in quizzes" :key="quizz.id">
-                    <v-list-item-content @click="$router.push(`/quizz/${quizz.id}/questions`)">
+                    <v-list-item-content @click="$router.push(`/quizz/${quizz.id}`)">
                         <v-list-item-title v-text="quizz.title" ></v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
