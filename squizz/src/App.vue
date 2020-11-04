@@ -31,17 +31,7 @@
 </template>
 
 <script>
-    //import Leaderboard from "@/components/Leaderboard";
-    //import QuizzPage from "./components/QuizzPage";
-    //import ListeQuizz from "./components/ListeQuizz";
-
-
     export default {
         name: 'App',
-
-        /*components: {
-            QuizzPage, ListeQuizz
-            //Leaderboard
-        }*/
-    }
+    };
 </script>
