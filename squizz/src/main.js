@@ -16,7 +16,7 @@ const router = new VueRouter({
         { path: '/quizz/create', component: require('./components/addSquizz').default },
         { path: '/quizz/:idQuizz', component: require('./components/Leaderboard').default },
         { path: '/quizz/:idQuizz/questions', component: require('./components/QuizzPage').default },
-        { path: '*', redirect: '/' }
+        { path: '*', redirect: '/' },
     ]
 });
 

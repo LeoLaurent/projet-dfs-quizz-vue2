@@ -4,6 +4,42 @@
         <p class="text-justify">
             {{quizz.description}}
         </p>
+
+        <v-form ref="form">
+
+          <v-container>
+            <v-row>
+                <v-col
+                  cols="12"
+                  md="2"
+                >
+                  <v-text-field
+                    v-model="name"
+                    :counter="10"
+                    :rules="nameRules"
+                    label="Name"
+                    required
+                  ></v-text-field>
+                </v-col>
+
+                <v-col
+                  cols="12"
+                  md="2"
+                >
+                  <v-btn
+                    :disabled="!valid"
+                    color="success"
+                    class="mr-4"
+                    @click="validate"
+                  >
+                    Commencer le test
+                  </v-btn>
+                </v-col>
+            </v-row>
+          </v-container>
+
+        </v-form>
+
         <v-card>
             <v-card-title>
                 <v-text-field
@@ -34,6 +70,13 @@
 
         data () {
           return {
+              valid: true,
+              name: '',
+              nameRules: [
+                v => !!v || 'Name is required',
+                v => (v && v.length <= 10) || 'Name must be less than 10 characters',
+              ],
+
               headers: [
                   {
                       text: 'Pseudo',
@@ -48,9 +91,15 @@
                       value: 'score'
                   }
               ],
-            search: '',
-            quizz: {}
+              search: '',
+              quizz: {}
           }
+        },
+
+        methods: {
+          validate () {
+            this.$refs.form.validate()
+          },
         },
 
         apollo: {
