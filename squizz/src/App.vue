@@ -25,20 +25,21 @@
     </v-app-bar>
 
     <v-main>
-      <Test/>
+      <add-squizz/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Test from "@/components/Test";
-
+//import Test from "@/components/Test";
+//import QuizzPage from "@/components/QuizzPage";
+import addSquizz from "@/components/addSquizz";
 export default {
   name: 'App',
 
   components: {
     // eslint-disable-next-line vue/no-unused-components
-    Test,
+     addSquizz,
   },
 
   data: () => ({
