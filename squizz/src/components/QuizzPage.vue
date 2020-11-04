@@ -19,22 +19,19 @@
     import gql from 'graphql-tag'
     export default {
         name: "QuizzPage",
-        props: {
-            idQuizz: String,
-        },
         beforeMount() {
-            console.log(this.$apollo);
             this.$apollo.queries.quizz.refetch();
         },
-        data: () => ({
-            answers: {},
-            quizz: {}
-        }),
+        data(){
+            return {
+                answers: {},
+                quizz: {}
+            }
+        },
         methods: {
           submitForm() {
-              console.log()
               let answers = this.answers;
-              fetch(`http://localhost:3000/api/current/quizz/${this.idQuizz}/answers`, {
+              fetch(`http://localhost:3000/api/current/quizz/${this.$route.params.idQuizz}/answers`, {
                   method: 'POST',
                   headers: {
                       'Accept': 'application/json',
@@ -52,19 +49,19 @@
             quizz: {
                 query() {
                     return gql`query {
-                      quizz(id: "${this.idQuizz}"){
-                        id
-                        title
-                        questions {
-                          id
-                          title
-                            answers {
+                        quizz(id: "${this.$route.params.idQuizz}"){
                             id
-                            text
-                            correct
-                          }
+                            title
+                                questions {
+                                    id
+                                    title
+                                    answers {
+                                        id
+                                        text
+                                        correct
+                                }
+                            }
                         }
-                      }
                     }`
                 }
             }
