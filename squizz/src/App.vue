@@ -25,20 +25,20 @@
     </v-app-bar>
 
     <v-main>
-      <Test/>
+      <QuizzPage idQuizz="5fa1ef16635171317b40559c"/>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Test from "@/components/Test";
+import QuizzPage from "@/components/QuizzPage";
 
 export default {
   name: 'App',
 
   components: {
     // eslint-disable-next-line vue/no-unused-components
-    Test,
+    QuizzPage,
   },
 
   data: () => ({
