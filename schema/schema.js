@@ -143,11 +143,11 @@ const Mutations = new GraphQLObjectType({
             },
             resolve(parent, args) {
                 let score = new Score({
-                    username: args.title,
+                    username: args.username,
                     score: args.score,
                     quizzId: args.quizzId
                 });
-                return quizz.save();
+                return score.save();
             }
         },
         addAnswer: {
