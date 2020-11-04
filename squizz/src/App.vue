@@ -25,24 +25,53 @@
     </v-app-bar>
 
     <v-main>
-      <QuizzPage idQuizz="5fa1ef16635171317b40559c"/>
+      <v-list dense>
+        <v-subheader>REPORTS</v-subheader>
+        <v-list-item-group color="primary">
+          <v-list-item v-for="quizz in quizzes" :key="quizz.id">
+            <v-list-item-content>
+              <v-list-item-title v-text="quizz.title"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+      <QuizzPage idQuizz="5fa1ef16635171317b40559c"></QuizzPage>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import QuizzPage from "@/components/QuizzPage";
+//import Leaderboard from "@/components/Leaderboard";
+import gql from 'graphql-tag'
+import QuizzPage from "./components/QuizzPage";
+
 
 export default {
   name: 'App',
+  beforeMount() {
+      console.log(this.$apollo);
+      this.$apollo.queries.quizzes.refetch();
+  },
 
   components: {
-    // eslint-disable-next-line vue/no-unused-components
-    QuizzPage,
+      QuizzPage,
+      //Leaderboard
   },
 
   data: () => ({
-    //
+      quizzes: {}
   }),
+  apollo: {
+      quizzes: {
+          query() {
+              return gql`query {
+                  quizzes {
+                    id
+                    title
+                }
+              }`
+          }
+      }
+  },
 };
 </script>

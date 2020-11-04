@@ -23,7 +23,7 @@
             idQuizz: String,
         },
         beforeMount() {
-            console.log(this);
+            console.log(this.$apollo);
             this.$apollo.queries.quizz.refetch();
         },
         data: () => ({
@@ -32,6 +32,7 @@
         }),
         methods: {
           submitForm() {
+              console.log()
               let answers = this.answers;
               fetch(`http://localhost:3000/api/current/quizz/${this.idQuizz}/answers`, {
                   method: 'POST',
