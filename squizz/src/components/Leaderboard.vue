@@ -1,14 +1,17 @@
 <template>
     <v-container>
         <h2 class="pink--text text--darken-2">{{ quizz.title }}</h2>
-        <p class="text-justify">
-            {{quizz.description}}
-        </p>
-
-        <v-form ref="form">
+        <v-row>
+            <v-col>
+                <p class="text-justify">
+                    {{quizz.description}}
+                </p>
+            </v-col>
+        </v-row>
+        <v-form ref="form" v-if="$route.params.idScore == undefined">
 
           <v-container>
-            <v-row>
+            <v-row >
                 <v-col
                   cols="12"
                   md="2"
@@ -28,10 +31,11 @@
                   md="2"
                 >
                   <v-btn
+
                     :disabled="!valid"
-                    color="success"
+                    color="pink darken-1"
                     class="mr-4"
-                    @click="$router.push(`/quizz/${quizz.id}/questions`)"
+                    @click="send"
                   >
                     Commencer le test
                   </v-btn>
@@ -40,6 +44,20 @@
           </v-container>
 
         </v-form>
+
+        <v-row v-else>
+            <v-col>
+                <v-progress-circular
+                        :rotate="180"
+                        :size="100"
+                        :width="15"
+                        :value="value"
+                        color="pink">
+                    {{ scoreUser.score }}
+                </v-progress-circular>
+            </v-col>
+        </v-row>
+
 
         <v-card>
             <v-card-title>
@@ -93,7 +111,8 @@
                   }
               ],
               search: '',
-              quizz: {}
+              quizz: {},
+              scoreUser: {}
           }
         },
 
@@ -104,6 +123,11 @@
 
           changed: function(event) {
             this.$store.commit('newUser', event)
+          },
+          send: function () {
+              if ( this.$store.getters.username !== ''){
+                  this.$router.push(`/quizz/${this.quizz.id}/questions`)
+              }
           }
           // startQuizz () {
           //   this.$router.push(`/quizz/${quizz.id}/questions`)
@@ -126,6 +150,20 @@
                         }
                       }
                     }`
+                }
+            },
+            scoreUser: {
+                query () {
+                    if (this.$route.params.idScore != undefined) {
+                        return gql`query {
+                            scores(id: "${this.$route.params.idScore}") {
+                                id
+                                score
+                                username
+                            }
+                        }`
+                    }
+
                 }
             }
 

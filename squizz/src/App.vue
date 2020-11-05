@@ -8,11 +8,12 @@
       <div class="d-flex align-center">
         <v-img
                 alt="Cute Squid"
-                class="shrink mr-2"
+                class="shrink mr-2 logo-home"
                 contain
-                src="https://img.freepik.com/free-vector/squid-cartoon_119631-95.jpg?size=338&ext=jpg"
+                :src="image"
                 transition="scale-transition"
                 width="40"
+                @click="$router.push('/')"
         />
 
       </div>
@@ -39,9 +40,20 @@
     export default {
         name: 'App',
 
+        data(){
+            return {
+                image: require('@/assets/Cute.png')
+            }
+        }
         /*components: {
             QuizzPage, ListeQuizz
             //Leaderboard
         }*/
     }
 </script>
+
+<style>
+  .logo-home{
+    cursor: pointer;
+  }
+</style>

@@ -97,6 +97,13 @@ const RootQuery = new GraphQLObjectType({
             resolve(parents, args){
                 return Quizz.find({});
             }
+        },
+        score: {
+            type: ScoreType,
+            args: {id : {type: GraphQLID}},
+            resolve(parent, args){
+                return Answer.findById(args.id)
+            }
         }
     }
 });

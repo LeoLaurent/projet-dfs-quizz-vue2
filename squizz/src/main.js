@@ -13,8 +13,6 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     state: {
         username: '',
-        score: '',
-        sent: false
     },
     mutations: {
         newUser (state, username) {
@@ -22,10 +20,6 @@ const store = new Vuex.Store({
         },
         delUser (state){
             state.username = '';
-            state.sent = false;
-        },
-        send (state){
-            state.sent = true;
         }
 
     },
@@ -44,6 +38,7 @@ const router = new VueRouter({
         { path: '/quizz/create', component: require('./components/addSquizz').default },
         { path: '/quizz/:idQuizz', component: require('./components/Leaderboard').default },
         { path: '/quizz/:idQuizz/questions', component: require('./components/QuizzPage').default },
+        { path: '/quizz/:idQuizz/:idScore', component: require('./components/Leaderboard').default },
         { path: '*', redirect: '/' },
     ]
 });
