@@ -2,7 +2,7 @@
     <v-container>
         <h2 class="pink--text text--darken-2">Liste des Squizz</h2>
         <v-list dense>
-            <v-subheader></v-subheader>
+            <v-subheader>Pour faire un Squizz, cliquez sur son nom !</v-subheader>
             <v-list-item-group color="primary">
                 <v-list-item v-for="quizz in quizzes" :key="quizz.id">
                     <v-list-item-content @click="$router.push(`/quizz/${quizz.id}`)">
