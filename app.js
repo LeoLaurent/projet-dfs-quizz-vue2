@@ -10,8 +10,13 @@ var bodyParser = require('body-parser')
 // allow cross-origin requests
 app.use(cors());
 app.use( bodyParser.json() );
-
-mongoose.connect("mongodb+srv://squizz:root@cluster.zb4we.mongodb.net/squizz?retryWrites=true&w=majority");
+(async () => {
+    try {
+        await mongoose.connect("mongodb+srv://squizz:root@cluster.zb4we.mongodb.net/squizz?retryWrites=true&w=majority");
+    } catch (err) {
+        console.log('error: ' + err)
+    }
+})();
 mongoose.connection.once('open', () => {
     console.log('conneted to database');
 });
