@@ -1,6 +1,6 @@
 var fs = require('fs');
 
-const url= "localhost:8080"
+const url= "http://localhost:8080/quizz/create"
 const {By, Key} = require('selenium-webdriver');
 const webdriver = require('selenium-webdriver');
 
@@ -18,6 +18,9 @@ describe('Add Quizz', () => {
 
     test('ajouter une question', async () => {
         await browser.get(url)
+        await browser.findElement(By.name("titre")).sendKeys("Carole Deumié");
+        await browser.findElement(By.name("descrip")).sendKeys("Carole Deumié");
+        await browser.findElement(By.name("mot")).sendKeys("Carole Deumié");
         const listB = browser.findElements(By.css("pregunta"))
         await browser.findElement(By.id("ajouter")).click
         const listA= browser.findElements(By.css("pregunta"))
@@ -26,6 +29,9 @@ describe('Add Quizz', () => {
 
     test('retirer une question', async () => {
         await browser.get(url)
+        await browser.findElement(By.name("titre")).sendKeys("Carole Deumié");
+        await browser.findElement(By.name("descrip")).sendKeys("Carole Deumié");
+        await browser.findElement(By.name("mot")).sendKeys("Carole Deumié");
         const listB = browser.findElements(By.css("pregunta"))
         await browser.findElement(By.css("effaceur")).click
         const listA= browser.findElements(By.css("pregunta"))

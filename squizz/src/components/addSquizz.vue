@@ -2,9 +2,9 @@
 <v-container>
     <h2 class="pink--text text--darken-2">Création d'un nouveau Squizz</h2>
     <v-form>
-      <v-text-field v-model="title" label="Nom du Squizz" :rules="contenuRules"></v-text-field>
-      <v-text-field v-model="description" label="Description du Squizz" :rules="contenuRules"></v-text-field>
-      <v-text-field type="password" v-model="password" label="Mot de passe" :rules="contenuRules"></v-text-field>
+      <v-text-field v-model="title" label="Nom du Squizz" :rules="contenuRules" id="titre"></v-text-field>
+      <v-text-field v-model="description" label="Description du Squizz" :rules="contenuRules" id="descrip"></v-text-field>
+      <v-text-field type="password" v-model="password" label="Mot de passe" :rules="contenuRules" id="mot"></v-text-field>
       <component v-for="question in questionList" v-bind:is="question.type" :id="question.id" :key="question.id" @update="updateQuestion" @delete="deleteQuestion"></component>
     </v-form>
 
@@ -33,7 +33,8 @@
 
 <script>
 import question from "@/components/question";
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
+
 export default {
 name: "addSquizz.vue",
   components: {question},
@@ -61,6 +62,7 @@ name: "addSquizz.vue",
         alert("Vous n'avez pas rempli les champs requis")
       }
     },
+
     updateQuestion(emission){
       this.questionList[emission.id].reponses=emission.reponses
       this.questionList[emission.id].questionTitle=emission.questionTitle
@@ -71,7 +73,6 @@ name: "addSquizz.vue",
     },
 
     save(){
-      if( this.title && this.description && this.password){
       this.$apollo.mutate({
         mutation: gql`mutation {
         addQuizz(title: "${this.title}", password: "${this.password}", description: "${this.description}") {
@@ -111,11 +112,8 @@ name: "addSquizz.vue",
           )
         }
       })
-
+      this.$router.push('/')
     }
-      else{
-        alert("Vous n'avez pas rempli les champs requis")
-      }}
 
   },
   watch: {
