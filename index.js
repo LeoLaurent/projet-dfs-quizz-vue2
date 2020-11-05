@@ -2,7 +2,7 @@ const app = require('./app');
 
 config = {
     baseUrl: "localhost",
-    port: 3000
+    port: 4500
 }
 
 
