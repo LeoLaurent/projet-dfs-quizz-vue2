@@ -9,7 +9,7 @@
                 </v-col>
             </v-row>
             <v-row dense flex align-center justify-center>
-                <v-col cols="12" md="12" v-for="question in quizz.questions" :key="question.id" >
+                <v-col cols="12" md="12" v-for="question in shuffledQuestions" :key="question.id" >
                     <v-card>
                         <v-card-title>{{ question.title }}</v-card-title>
                         <v-card-text>
@@ -29,6 +29,8 @@
 
 <script>
     import gql from 'graphql-tag'
+    import _ from 'lodash'
+
     export default {
         name: "QuizzPage",
         beforeMount() {
@@ -39,6 +41,11 @@
                 error: false,
                 answers: {},
                 quizz: {}
+            }
+        },
+        computed: {
+            'shuffledQuestions': function() {
+                return _.shuffle(this.quizz.questions)
             }
         },
         methods: {
