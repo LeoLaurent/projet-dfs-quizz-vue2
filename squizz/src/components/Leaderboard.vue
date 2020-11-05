@@ -78,6 +78,8 @@
                     :headers="headers"
                     :items="quizz.scores"
                     :search="search"
+                    :sort-by="['score']"
+                    :sort-desc="[true]"
             ></v-data-table>
         </v-card>
     </v-container>
