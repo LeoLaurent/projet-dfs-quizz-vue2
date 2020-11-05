@@ -10,6 +10,10 @@ var bodyParser = require('body-parser')
 // allow cross-origin requests
 app.use(cors());
 app.use( bodyParser.json() );
+const config = {
+    autoIndex: false,
+    useNewUrlParser: true,
+};
 (async () => {
     try {
         await mongoose.connect("mongodb+srv://squizz:root@cluster.zb4we.mongodb.net/squizz?retryWrites=true&w=majority", {config});
