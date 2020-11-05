@@ -22,8 +22,18 @@ describe('Leaderboard test', () => {
 
     test('can start the quizz', async () => {
         await browser.get(url);
-        await driver.findElement(By.css("v-text-field__slot")).sendKeys("testdenom");
+        await browser.findElement(By.css("v-text-field__slot")).sendKeys("testdenom");
         await browser.findElement(By.name("button")).click()
+        var urlNew = await webdriver.getCurrentUrl();
+        console.log(urlNew);
+        expect(urlNew).toBe('http://localhost:8080/quizz/5fa1ef16635171317b40559c/questions');
+    });
+    test('empty username', async () => {
+        await browser.get(url);
+        await browser.findElement(By.css("v-text-field__slot")).sendKeys("");
+        await browser.findElement(By.name("button")).click();
+        var urlNew = await webdriver.getCurrentUrl();
+        expect(urlNew).toBe(url);
     });
 
     afterEach(async () => {

@@ -6,7 +6,6 @@ const {By, Key} = require('selenium-webdriver');
 
 const webdriver = require('selenium-webdriver');
 
-setTimeout(100000000);
 
 
 describe('Questions test', () => {
@@ -14,17 +13,17 @@ describe('Questions test', () => {
     beforeEach(() => {
         require('chromedriver');
         browser = new webdriver.Builder().forBrowser('chrome').build()
-    }, 1000000000000);
+    }, 1000);
 
     test('empty', async () => {
         await browser.get(url);
         await browser.findElement(By.id("send-quizz")).click();
         webdriver.wait(function () {
             return webdriver.isElementPresent(browser.findElement(By.id("error-form")));
-        }, 10000000000000);
+        }, 1000);
         var erreur = await browser.findElement(By.id("error-form"));
         expect(erreur.length).toBe(1)
-    }, 1000000000000);
+    }, 1000);
 
 
     afterEach(async () => {
