@@ -16,7 +16,7 @@ const config = {
 };
 (async () => {
     try {
-        await mongoose.connect("mongodb+srv://squizz:root@cluster.zb4we.mongodb.net/squizz?retryWrites=true&w=majority", {config});
+        await mongoose.connect("mongodb+srv://squizz:root@cluster.zb4we.mongodb.net/squizz?retryWrites=true&w=majority", {useNewUrlParser: true});
     } catch (err) {
         console.log('error: ' + err)
     }
