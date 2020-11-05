@@ -12,7 +12,7 @@ app.use(cors());
 app.use( bodyParser.json() );
 (async () => {
     try {
-        await mongoose.connect("mongodb+srv://squizz:root@cluster.zb4we.mongodb.net/squizz?retryWrites=true&w=majority");
+        await mongoose.connect("mongodb+srv://squizz:root@cluster.zb4we.mongodb.net/squizz?retryWrites=true&w=majority", {config});
     } catch (err) {
         console.log('error: ' + err)
     }
