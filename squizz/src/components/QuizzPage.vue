@@ -42,12 +42,7 @@
             }
         },
         methods: {
-            emptyForm() {
-
-            },
             submitForm() {
-                console.log(this.answers);
-                console.log(this.quizz.questions);
                 if (Object.keys(this.answers).length === this.quizz.questions.length && this.quizz.questions.length
                     !== 0){
                     let answers = this.answers;
@@ -62,8 +57,8 @@
                             username: this.$store.getters.username
                         })
                     }).then(resp => resp.json())
-                        .then(resp => {
-                            this.$router.push(`/quizz/${resp.score.quizzId}/${resp.score.id}`);
+                        .then(resp => {console.log(resp.score._id)
+                            this.$router.push(`/quizz/${resp.score.quizzId}/${resp.score._id}`);
                         });
                 } else {
                     this.error = true;

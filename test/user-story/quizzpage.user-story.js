@@ -6,6 +6,8 @@ const {By, Key} = require('selenium-webdriver');
 
 const webdriver = require('selenium-webdriver');
 
+setTimeout(100000000);
+
 
 describe('Questions test', () => {
 

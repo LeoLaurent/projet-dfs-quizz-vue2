@@ -46,15 +46,20 @@
         </v-form>
 
         <v-row v-else>
-            <v-col>
+            <v-col cols="12" md="12">
                 <v-progress-circular
                         :rotate="180"
                         :size="100"
                         :width="15"
-                        :value="value"
+                        :value="scoreuser.score"
                         color="pink">
-                    {{ scoreUser.score }}
+                    {{ scoreuser.score }}
                 </v-progress-circular>
+            </v-col>
+            <v-col cols="12" md="12">
+                <p style="justify-content: center;">
+                    {{ scoreuser.username }}, vous avez obtenu un score de {{ scoreuser.score }}.
+                </p>
             </v-col>
         </v-row>
 
@@ -112,7 +117,7 @@
               ],
               search: '',
               quizz: {},
-              scoreUser: {}
+              scoreuser: {}
           }
         },
 
@@ -152,11 +157,12 @@
                     }`
                 }
             },
-            scoreUser: {
+            scoreuser: {
                 query () {
                     if (this.$route.params.idScore != undefined) {
+                        console.log(this.$route.params.idScore);
                         return gql`query {
-                            scores(id: "${this.$route.params.idScore}") {
+                            scoreuser(id: "${this.$route.params.idScore}") {
                                 id
                                 score
                                 username

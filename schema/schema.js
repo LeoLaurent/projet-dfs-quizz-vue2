@@ -98,11 +98,11 @@ const RootQuery = new GraphQLObjectType({
                 return Quizz.find({});
             }
         },
-        score: {
+        scoreuser: {
             type: ScoreType,
             args: {id : {type: GraphQLID}},
             resolve(parent, args){
-                return Answer.findById(args.id)
+                return Score.findById(args.id)
             }
         }
     }
