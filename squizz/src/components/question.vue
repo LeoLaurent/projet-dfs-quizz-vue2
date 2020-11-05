@@ -36,7 +36,7 @@
             required
             outlined
             :rules="contenuRules"
-            color="red lighten-2"
+            color="amber darken-1"
         ></v-text-field>
       </v-col>
       <v-col cols="12" md="3">
@@ -46,7 +46,7 @@
             required
             outlined
             :rules="contenuRules"
-            color="red lighten-2"
+            color="amber darken-1"
         ></v-text-field>
       </v-col>
       <v-col cols="12" md="3">
@@ -56,7 +56,7 @@
             required
             outlined
             :rules="contenuRules"
-            color="red lighten-2"
+            color="amber darken-1"
         ></v-text-field>
       </v-col>
     </v-row>

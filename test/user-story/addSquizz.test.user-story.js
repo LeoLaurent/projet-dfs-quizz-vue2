@@ -27,7 +27,7 @@ describe('Add Quizz', () => {
         expect(length(listA)).toBe(length(listB)+1)
     });
 
-    test('retirer une question', async () => {
+   test('retirer une question', async () => {
         await browser.get(url)
         await browser.findElement(By.name("titre")).sendKeys("Carole Deumié");
         await browser.findElement(By.name("descrip")).sendKeys("Carole Deumié");
