@@ -2,7 +2,7 @@
 
 ![Logo Squizz](squizz/src/assets/Cute.png)
 
-Lien du site : http://asperule.ovh1.ec-m.fr/dist
+Lien du site : http://asperule.ovh1.ec-m.fr/squizz
 
 ### Vous rêvez de pourvoir affronter les joueurs du monde entier ?
 
